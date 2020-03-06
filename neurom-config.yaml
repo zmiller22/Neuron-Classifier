@@ -1,0 +1,191 @@
+# Config file for morph_stats that extracts all available statistics
+neurite:
+ local_bifurcation_angles:
+  - min
+  - max
+  - mean
+  - total
+ neurite_lengths:
+  - min
+  - max
+  - mean
+  - total
+# neurite_volume_density:
+ neurite_volumes:
+  - min
+  - max
+  - mean
+  - total
+ number_of_bifurcations:
+  - min
+  - max
+  - mean
+  - total
+ number_of_forking_points:
+  - min
+  - max
+  - mean
+  - total
+ number_of_neurites:
+  - min
+  - max
+  - mean
+  - total
+ number_of_sections:
+  - min
+  - max
+  - mean
+  - total
+ number_of_sections_per_neurite:
+  - min
+  - max
+  - mean
+  - total
+ number_of_segments:
+  - min
+  - max
+  - mean
+  - total
+ number_of_terminations:
+  - min
+  - max
+  - mean
+  - total
+ partition:
+  - min
+  - max
+  - mean
+  - total
+ partition_asymmetry:
+  - min
+  - max
+  - mean
+  - total
+# principal_direction_extents:
+ remote_bifurcation_angles:
+  - min
+  - max
+  - mean
+  - total
+ section_areas:
+  - min
+  - max
+  - mean
+  - total
+ section_bif_branch_orders:
+  - min
+  - max
+  - mean
+  - total
+ section_bif_lengths:
+  - min
+  - max
+  - mean
+  - total
+ section_branch_orders:
+  - min
+  - max
+  - mean
+  - total
+ section_lengths:
+  - min
+  - max
+  - mean
+  - total
+ section_path_distances:
+  - min
+  - max
+  - mean
+  - total
+ section_radial_distances:
+  - min
+  - max
+  - mean
+  - total
+ section_term_branch_orders:
+  - min
+  - max
+  - mean
+  - total
+ section_term_lengths:
+  - min
+  - max
+  - mean
+  - total
+ section_tortuosity:
+  - min
+  - max
+  - mean
+  - total
+ section_volumes:
+  - min
+  - max
+  - mean
+  - total
+ segment_lengths:
+  - min
+  - max
+  - mean
+  - total
+ segment_meander_angles:
+  - min
+  - max
+  - mean
+  - total
+ segment_midpoints:
+  - min
+  - max
+  - mean
+  - total
+ segment_radial_distances:
+  - min
+  - max
+  - mean
+  - total
+ segment_radii:
+  - min
+  - max
+  - mean
+  - total
+ segment_taper_rates:
+  - min
+  - max
+  - mean
+  - total
+ segment_volumes:
+  - min
+  - max
+  - mean
+  - total
+ terminal_path_lengths_per_neurite:
+  - min
+  - max
+  - mean
+  - total
+ total_length:
+  - min
+  - max
+  - mean
+  - total
+ total_length_per_neurite:
+  - min
+  - max
+  - mean
+  - total
+
+neurite_type:
+  - ALL
+
+neuron:
+ soma_radii:
+  - mean
+ soma_surface_areas:
+  - mean   
+ trunk_origin_azimuths:
+  - mean
+ trunk_origin_elevations:
+  - mean
+ trunk_origin_radii:
+  - mean
+ trunk_section_lengths:
+  - mean
