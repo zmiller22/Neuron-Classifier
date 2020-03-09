@@ -4,14 +4,13 @@
 Created on Fri Mar  6 14:29:07 2020
 
 @author: zack
+
+
 """
 
-import neurom as nm
-from neurom import check
 import numpy as np
 import os
 import pandas as pd
-import functions as my_func
 
 #%% Set paths
 
@@ -40,7 +39,8 @@ os.system(reg_gad_com)
 os.system(reg_vglut_com)
 os.system(reg_unlabeled_com)
 
-#%% Handle the json file issues with pandas
+#%% Handle the json file issues with pandas and save to CSV
+
 # Read morphometry data from json files into a dataframe
 reg_gad_df = pd.read_json(output_file_dir + '/reg_gad.json', orient="index")
 reg_vglut_df = pd.read_json(output_file_dir + '/reg_vglut.json', orient="index")
@@ -54,7 +54,7 @@ reg_unlabeled_df = reg_unlabeled_df.iloc[:,0].apply(pd.Series).dropna()
 df_list = [reg_gad_df, reg_vglut_df, reg_unlabeled_df]
 csv_name_list = ['/reg_gad.csv', '/reg_vglut.csv', '/reg_unlabeled.csv']
 
-# Check for any remaining non-numeric values
+# Check for any remaining non-numeric values, save to csv if there are none
 non_numeric = False
 
 for df in df_list:
