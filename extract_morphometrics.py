@@ -35,6 +35,7 @@ reg_gad_com = 'morph_stats ' + reg_gad_dir + ' -I \'SomaError\' -C ' + config_fi
 reg_vglut_com = 'morph_stats ' + reg_vglut_dir + ' -I \'SomaError\' -C ' + config_file_path + ' -o ' + output_file_dir + '/reg_vglut.json' 
 reg_unlabeled_com = 'morph_stats ' + reg_unlabeled_dir + ' -I \'SomaError\' -C ' + config_file_path + ' -o ' + output_file_dir + '/reg_unlabeled.json' 
 
+#TODO get location information
 os.system(reg_gad_com)
 os.system(reg_vglut_com)
 os.system(reg_unlabeled_com)
@@ -45,11 +46,27 @@ reg_gad_df = pd.read_json(output_file_dir + '/reg_gad.json', orient="index")
 reg_vglut_df = pd.read_json(output_file_dir + '/reg_vglut.json', orient="index")
 reg_unlabeled_df = pd.read_json(output_file_dir + '/reg_unlabeled.json', orient="index")
 
-# Unpact the column containing a dict
-reg_gad_df = reg_gad_df.iloc[:,0].apply(pd.Series)
-reg_vglut_df = reg_vglut_df.iloc[:,0].apply(pd.Series)
-reg_unlabeled_df = reg_unlabeled_df.iloc[:,0].apply(pd.Series)
+# Unpack the column containing a dict and drop any rows containing NaN
+reg_gad_df = reg_gad_df.iloc[:,0].apply(pd.Series).dropna()
+reg_vglut_df = reg_vglut_df.iloc[:,0].apply(pd.Series).dropna()
+reg_unlabeled_df = reg_unlabeled_df.iloc[:,0].apply(pd.Series).dropna()
 
-#TODO Go through the dataframe and get redundant/not useful metrics, edit the 
-# config file accordingly
+df_list = [reg_gad_df, reg_vglut_df, reg_unlabeled_df]
+csv_name_list = ['/reg_gad.csv', '/reg_vglut.csv', '/reg_unlabeled.csv']
+
+# Check for any remaining non-numeric values
+non_numeric = False
+
+for df in df_list:
+    if np.sum(~df.applymap(np.isreal).values) != 0:non_numeric=True
+
+if non_numeric == False: 
+    print("No non-numeric values present, saving data to CSV...")
+    for idx, df in enumerate(df_list):
+        path = output_file_dir+csv_name_list[idx]
+        df.to_csv(path)
+            
+elif non_numeric == True: print("Non-numeric values present")
+    
+
 

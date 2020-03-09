@@ -132,11 +132,7 @@ neurite:
   - max
   - mean
   - total
- segment_midpoints:
-  - min
-  - max
-  - mean
-  - total
+# segment_midpoints:
  segment_radial_distances:
   - min
   - max
@@ -163,16 +159,9 @@ neurite:
   - mean
   - total
  total_length:
-  - min
-  - max
   - mean
-  - total
  total_length_per_neurite:
-  - min
-  - max
   - mean
-  - total
-
 neurite_type:
   - ALL
 
