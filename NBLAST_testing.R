@@ -26,7 +26,7 @@ unlabeled_aba_scores <- nblast_allbyall(unlabeled_nrns)
 
 open3d()
 plot3d(gad_clusters, k=3, db=gad_nrns, soma=T)
-plot3d(gad_nrns[[1]], soma=TRUE)
+plot3d(glut_nrns, soma=TRUE)
 #all_neurons <- c(gad_nrns, glut_nrns, unlabeled_nrns)
 
 plot3d(unlabeled_nrns[[1212]], col="red", soma=TRUE)

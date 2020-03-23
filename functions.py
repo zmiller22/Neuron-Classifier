@@ -6,12 +6,19 @@ Created on Thu Dec 19 23:27:11 2019
 @author: Zachary Miller
 """
 import os
+import numpy as np
+import pandas as pd
 
-def get_filenames(dir_path, strip_ext):
-    """Given a directory, returns a list of all file names within that path. If
-    strip_ext is set to True, the filenames will not have their extensions. 
-    (strip_ext not implimented yet)"""
-    #TODO add option to strip
+#TODO add option to strip file extensions
+def getFilenames(dir_path):
+    """Returns a list of filesnames within a directory
+    
+    Args: 
+        dir_path (str): path to the directory
+        
+    Returns:
+        list: list containing the filenames as strings
+    """
     filename_list = []
     dir_obj = os.fsencode(dir_path)
     for file in os.listdir(dir_obj):
@@ -21,8 +28,23 @@ def get_filenames(dir_path, strip_ext):
             filename_list.append(filename)
             
     return filename_list
+    
+def getSomaLoc(file_path):
+    """Returns the (x,y,z) coordinate for the soma of a swc file
+    
+    Args:
+        file_path (str): path to the swc file
 
-# def fix_neurom_json_df(df):
-#     """When reading using pandas load_json(json_file, orient='index') to load 
-#     a json file created using NeuroM's morph_stats with my config file, the first
-#     column ends up holding the dict values"""
+    Returns:
+        list: list formatted as [x,y,z]
+    
+    """
+    # Read in the swc file as a dataframe
+    nrn_df = pd.read_csv(file_path, header=None, comment="#",
+                         delim_whitespace=True)
+    
+    # Get all rows containing soma points and find the average of the points
+    soma_rows = nrn_df.loc[nrn_df.iloc[:,1] == 1].values
+    soma_point = np.mean(soma_rows, axis=0)[2:5]
+    
+    return list(soma_point)

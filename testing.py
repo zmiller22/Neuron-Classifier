@@ -17,8 +17,8 @@ reg_gad_dir = "/home/zack/Desktop/Lab_Work/Data/neuron_morphologies/Zebrafish/un
 unreg_gad_dir = "/home/zack/Desktop/Lab_Work/Data/neuron_morphologies/Zebrafish/labeled_kunst_data_unaligned/data/Gad1b/"
 
 # get a list of the neuron filenames in each directory
-unreg_gad_nrn_filename_list = my_func.get_filenames(unreg_gad_dir, False)
-reg_gad_nrn_filename_list = my_func.get_filenames(reg_gad_dir, False)
+unreg_gad_nrn_filename_list = my_func.getFilenames(unreg_gad_dir)
+reg_gad_nrn_filename_list = my_func.getFilenames(reg_gad_dir)
 
 # %%
 # Iterate over all neurons
