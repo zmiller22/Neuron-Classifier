@@ -35,7 +35,6 @@ gad_com = 'morph_stats ' + gad_dir + ' -I \'SomaError\' -C ' + config_file_path 
 vglut_com = 'morph_stats ' + vglut_dir + ' -I \'SomaError\' -C ' + config_file_path + ' -o ' + output_file_dir + '/vglut.json' 
 unlabeled_com = 'morph_stats ' + unlabeled_dir + ' -I \'SomaError\' -C ' + config_file_path + ' -o ' + output_file_dir + '/unlabeled.json' 
 
-#TODO get location information
 os.system(gad_com)
 os.system(vglut_com)
 os.system(unlabeled_com)
@@ -93,7 +92,7 @@ elif non_numeric == False:
                            axis=1)
     unlabeled_df.index = unlabeled_nn_list
     
-    
+    df_list = [gad_df, vglut_df, unlabeled_df]
     csv_name_list = ['/gad.csv', '/vglut.csv', '/unlabeled.csv']
     print("No non-numeric values present, saving data to CSV...")
     for idx, df in enumerate(df_list):
