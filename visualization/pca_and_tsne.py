@@ -16,7 +16,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-import MPIN_data_funcs as mpin_funcs
+import visualization_funcs
 
 #%% Load and preprocess data and labels
 
@@ -25,15 +25,14 @@ NORMALIZE = True
 K_PCA = 2
 
 K_TSNE = 2
-PCA_FIRST = False
+PCA_FIRST = True
 NUM_PCA_COMP = 50
-PERPLEXITY = 40
+PERPLEXITY = 30
 
-COLORS =  [(0.73,0.75,0.75,0.1), 'blue', 'orange', 'green', 'red', 
-           'brown', 'pink', 'olive', 'cyan', 'purple']
+COLORS =  [(0,0,0,0.1), 'blue', 'green', 'red', 'cyan', 'magenta']
 
 
-data_file_path = '/home/zack/Desktop/Lab_Work/Data/neuron_morphologies/Zebrafish/aligned_040120/MPIN_spatial_morphology.csv'
+data_file_path = '/home/zack/Desktop/Lab_Work/Data/neuron_morphologies/Zebrafish/aligned_040120/zbrain_neuron_spatial_morphometrics_Zbrain_MECE_masks_reflected_x.csv'
 lbl_file_path = '/home/zack/Desktop/Lab_Work/Data/neuron_morphologies/Zebrafish/aligned_040120/metadata.csv'
 
 data_df = pd.read_csv(data_file_path, index_col=0)
@@ -53,10 +52,10 @@ if NORMALIZE==True:
     data_df.columns = col_lbls
     
 combined_df = pd.concat([lbl_df, data_df], axis=1, sort=False)
-combined_df = mpin_funcs.getCellTypeLabels(combined_df)
+combined_df = visualization_funcs.convertNeurotransmitterLabels(combined_df)
 
-combined_data = combined_df.values[:,5:]
-combined_lbls = combined_df['cell_type'].values.astype(int)
+combined_data = combined_df.values[:,2:]
+combined_lbls = combined_df['gal4'].values.astype(int)
 
 #%% Visualize soma locations
 soma_data = data_df[['SomaX','SomaY','SomaZ']].values
@@ -82,7 +81,7 @@ if K_PCA==3:
                combined_pca_data[:,2], c=combined_lbls, 
                cmap=matplotlib.colors.ListedColormap(COLORS))
     
-    ax.set_title('3d PCA Projection of All Neurons')
+    #ax.set_title('3d PCA Projection of All Neurons')
     ax.set_xlabel('PC1')
     ax.set_ylabel('PC2')
     ax.set_zlabel('PC3')
